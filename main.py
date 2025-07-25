@@ -84,7 +84,6 @@ with st.sidebar:
     # Footer sticky at bottom
     st.markdown("""
         <div class="sidebar-footer">
-            
             ❤️ Built by <a href="https://buildfastwithai.com" target="_blank">Build Fast with AI</a>
         </div>
     """, unsafe_allow_html=True)
