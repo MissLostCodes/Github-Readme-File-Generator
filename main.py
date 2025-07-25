@@ -10,6 +10,7 @@ st.set_page_config(page_title="README Generator", layout="wide")
 # CSS for sidebar layout
 st.markdown("""
     <style>
+       
     /* Style for the Generate README button */
         div.stButton > button {
         border: 2px solid #00bfff;
@@ -41,26 +42,27 @@ st.markdown("""
     .logo {
         width: 100%;
         max-width: 150px;
-        margin: 0 auto 5px auto;
+        
         display: block;
     }
 
     .project-title {
         text-align: left;
         font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 20px;
+        font-size: 15px;
+        margin-bottom: 10px;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar layout using flexbox
+
+
 with st.sidebar:
     with st.container():
         st.markdown('<div class="sidebar-content">', unsafe_allow_html=True)
 
         # 1. Logo
-        st.image("logo.png", use_container_width=False , width=100)
+        st.image("https://github.com/pratik-gond/temp_files/blob/main/image-removebg-preview.png?raw=true", use_container_width=False , width=120)
 
         # 2. Project name
         st.markdown('<div class="project-title">🦆 GitHub README File Generator</div>', unsafe_allow_html=True)
