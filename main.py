@@ -132,7 +132,7 @@ if st.button("Generate README"):
             for root, _, files in os.walk(tmp_dir):
                 for f in files:
                     if f.lower().endswith(
-                        (".py", ".js" , ".ts" , ".jsx" , ".html" ,".css" , ".tsx" , ".php" , ".java", ".cpp", ".txt", ".yml", ".yaml", ".json", ".toml", ".cfg", ".ini")
+                        (".py", ".js" , ".ts" , ".jsx" ,".ipynb", ".html" ,".css" , ".tsx" , ".php" , ".java", ".cpp", ".txt", ".yml", ".yaml", ".json", ".toml", ".cfg", ".ini")
                     ):
                         path = os.path.join(root, f)
                         rel_path = os.path.relpath(path, tmp_dir)
