@@ -5,38 +5,67 @@ import streamlit as st
 from git import Repo, GitCommandError
 from agent import build_agent
 
-
 st.set_page_config(page_title="README Generator", layout="wide")
-import streamlit as st
-import streamlit as st
 
-# CSS to make the sidebar a vertical flex container
+# CSS for sidebar layout
 st.markdown("""
     <style>
-    [data-testid="stSidebar"] > div:first-child {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
+    /* Style for the Generate README button */
+        div.stButton > button {
+        border: 2px solid #00bfff;
+        border-radius: 8px;
+        padding: 10px 24px;
+        background-color: #111;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        transition: 0.3s ease;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     }
-
+   
+    div.stButton > button:hover {
+        background-color: #00bfff;
+        color: black;
+        transform: scale(1.03);
+        border-color: #fff;
+    }
     .sidebar-content {
         flex: 1;
     }
 
     .sidebar-footer {
-        
         font-size: 0.9em;
         padding: 10px 0;
+    }
+
+    .logo {
+        width: 100%;
+        max-width: 150px;
+        margin: 0 auto 5px auto;
+        display: block;
+    }
+
+    .project-title {
+        text-align: left;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 20px;
     }
     </style>
 """, unsafe_allow_html=True)
 
 # Sidebar layout using flexbox
 with st.sidebar:
-    # Wrap main content in a container
     with st.container():
         st.markdown('<div class="sidebar-content">', unsafe_allow_html=True)
 
+        # 1. Logo
+        st.image("logo.jpg", use_container_width=False ,  width=100)
+
+        # 2. Project name
+        st.markdown('<div class="project-title">🦆 GitHub README File Generator</br></br></div>', unsafe_allow_html=True)
+
+        # 3. API Key input field
         st.header("🔑 Settings")
         api_key = st.text_input(
             "OpenRouter API Key",
@@ -46,25 +75,41 @@ with st.sidebar:
 
         st.markdown("---")
         st.markdown("**⚡Model:** moonshotai/kimi-k2")
+
         # Download button placeholder
         download_placeholder = st.empty()
 
-        st.markdown("</div>", unsafe_allow_html=True)  # Close content div
+        st.markdown("</div>", unsafe_allow_html=True)
 
-    # Footer (sticky at bottom)
+    # Footer sticky at bottom
     st.markdown("""
-        <div class="sidebar-footer" text-align="left">
-              </br></br></br></br></br></br></br></br></br>
-              ❤️ Built by <a href="https://buildfastwithai.com" target="_blank">Build Fast with AI</a>
+        <div class="sidebar-footer">
+            </br>
+            ❤️ Built by <a href="https://buildfastwithai.com" target="_blank">Build Fast with AI</a>
         </div>
     """, unsafe_allow_html=True)
 
 
-
-st.title("🦆 Github README File Generator (Kimi K2 + Agno)")
+st.title("🦆 Github README File Generator")
+st.subheader("🔥🔥 Kimi K2\u00A0\u00A0X\u00A0\u00A0Agno 🔥🔥")
 repo_url = st.text_input("GitHub repo URL", placeholder="https://github.com/user/repo")
 
+
+if "readme_generated" not in st.session_state:
+    st.session_state["readme_generated"] = False
+
+if not st.session_state["readme_generated"]:
+    st.markdown("""
+    <small>
+    🔍 Paste your public GitHub repo URL above. </br>  
+    🔍 Enter your OpenRouter API key in the sidebar.</br>
+    🔍 After the file is generatee you can download it from download button in sidebar.</br> </br>
+    </small>
+    """, unsafe_allow_html=True)
+
 if st.button("Generate README"):
+    st.session_state["readme_generated"] = True
+
     if not repo_url.strip():
         st.warning("Please enter a repo URL.")
         st.stop()
