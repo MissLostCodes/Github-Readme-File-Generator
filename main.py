@@ -60,10 +60,10 @@ with st.sidebar:
         st.markdown('<div class="sidebar-content">', unsafe_allow_html=True)
 
         # 1. Logo
-        st.image("logo.jpg", use_container_width=False ,  width=100)
+        st.image("logo.png", use_container_width=False , width=100)
 
         # 2. Project name
-        st.markdown('<div class="project-title">🦆 GitHub README File Generator</br></br></div>', unsafe_allow_html=True)
+        st.markdown('<div class="project-title">🦆 GitHub README File Generator</div>', unsafe_allow_html=True)
 
         # 3. API Key input field
         st.header("🔑 Settings")
@@ -73,8 +73,10 @@ with st.sidebar:
             help="Get one at https://openrouter.ai/keys"
         )
 
-        st.markdown("---")
-        st.markdown("**⚡Model:** moonshotai/kimi-k2")
+        st.divider()
+        st.markdown("**Model Details**")
+        st.caption("Running: `moonshotai/kimi-k2`")
+        st.caption("via OpenRouter")
 
         # Download button placeholder
         download_placeholder = st.empty()
@@ -84,7 +86,11 @@ with st.sidebar:
     # Footer sticky at bottom
     st.markdown("""
         <div class="sidebar-footer">
+<<<<<<< HEAD
             ❤️ Built by <a href="https://buildfastwithai.com" target="_blank">Build Fast with AI</a>
+=======
+         ❤️ Built by <a href="https://buildfastwithai.com" target="_blank">Build Fast with AI</a>
+>>>>>>> 73699a3 (Made UI and style changes)
         </div>
     """, unsafe_allow_html=True)
 
@@ -132,8 +138,7 @@ if st.button("Generate README"):
             for root, _, files in os.walk(tmp_dir):
                 for f in files:
                     if f.lower().endswith(
-                        (".py", ".js" , ".ts" , ".jsx" ,".ipynb", ".html" ,".css" , ".tsx" , ".php" , ".java", ".cpp", ".txt", ".yml", ".yaml", ".json", ".toml", ".cfg", ".ini")
-                    ):
+                        (".py", ".js" , ".ts" , ".jsx" ,".ipynb", ".html" ,".css" , ".tsx" , ".php" , ".java", ".cpp", ".txt", ".yml", ".yaml", ".json", ".toml", ".cfg", ".ini") ):
                         path = os.path.join(root, f)
                         rel_path = os.path.relpath(path, tmp_dir)
                         try:
